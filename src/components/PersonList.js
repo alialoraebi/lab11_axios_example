@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -39,6 +39,22 @@ export default class PersonList extends React.Component {
         }
     }
 
+    handleDetailsClick(person) {
+        const details = `
+        Name: ${person.name.title} ${person.name.first} ${person.name.last}
+        User Name: ${person.login.username}
+        Gender: ${person.gender}
+        Time Zone Description: ${person.location.timezone.description}
+        Address: ${person.location.street.number} ${person.location.street.name}, ${person.location.city}, ${person.location.state}, ${person.location.postcode}
+        Email: ${person.email}
+        Birth Date and Age: ${new Date(person.dob.date).toLocaleDateString()} (${person.dob.age})
+        Register Date: ${new Date(person.registered.date).toLocaleDateString()}
+        Phone: ${person.phone}
+        Cell: ${person.cell}
+    `;
+        alert(details);
+    }
+
     render() {
         return (
             <Container>
@@ -63,6 +79,7 @@ export default class PersonList extends React.Component {
                                             <Card.Text>Register Date: {new Date(person.registered.date).toLocaleDateString()}</Card.Text>
                                             <Card.Text>Phone: {person.phone}</Card.Text>
                                             <Card.Text>Cell: {person.cell}</Card.Text>
+                                            <Button variant="primary" onClick={() => this.handleDetailsClick(person)}>Details</Button>
                                         </Col>
                                     </Row>
                                 </Card.Body>
@@ -73,4 +90,8 @@ export default class PersonList extends React.Component {
             </Container>
         );
     }
+
+
+
+
 }
