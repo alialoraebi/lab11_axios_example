@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import PersonList from "./components/PersonList";
+import Home from "./components/Home";
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+          <h1>Week 11 - Axios Examples</h1>
+          <BrowserRouter>
+              <nav>
+                  <NavLink to="/home">Home</NavLink>
+                  <NavLink to="/person">Persons</NavLink>
+              </nav>
+
+              <Routes>
+                  <Route path="/person" element={<PersonList/>} />
+                  <Route path="/home" element={<Home/>} />
+              </Routes>
+          </BrowserRouter>
+      </div>
   );
 }
 
